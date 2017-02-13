@@ -1,0 +1,13 @@
+Title: Vessel # 1
+Blue_Star_I
+Length(m), Width(m), Alpha(m), Beta(m), P(unit)
+20.0  20.0, 1.0, 1.0, 4.0
+Time, X(m), Y(m)  (relative to the orgin of the coordinates)
+0.0     100.0  80.0
+124.16  1100.0 80.0
+
+
+
+Fr= 1.15
+u=sqrt(9.81*5.0)*Fr = 8.0541
+t=1000.0/(sqrt(9.81*5.0)*Fr) = 142.78

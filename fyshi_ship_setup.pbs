@@ -1,0 +1,36 @@
+#!/bin/bash                                                                                                                                       
+#PBS -l select=32:ncpus=36:mpiprocs=36                                                                                                             
+#PBS -l walltime=02:30:00                                                                                                                         
+#PBS -A ERDCV00898FUN                                                                                                                             
+#PBS -j oe                                                                                                                                        
+#PBS -q standard_sm                                                                                                                               
+#PBS -N ship_sgi                                                                                                                              
+#PBS -M fyshi@udel.edu                                                                                                                      
+#PBS -m be                                                                                                                                        
+#PBS -l application=other                                                                                                                         
+
+NAME = fr_100_slp_10
+
+FUNWAVE=${HOME}/FUNWAVE/FUNWAVE-TVD
+EXEC=${FUNWAVE}/bin/funwave_sgi
+
+INPUT=${PBS_O_WORKDIR}/${NAME}
+BATHYMETRY=${PBS_O_WORKDIR}/${NAME}
+WAVEDATA=${PBS_O_WORKDIR}/${NAME}
+
+# create work output dir in workspace                                                                                                             
+HOUR=1
+RUNDIR=${WORKDIR}/${NAME}
+mkdir -p ${RUNDIR}
+mkdir -p ${RUNDIR}/output
+
+# copy input work data files to RUNDIR                                                                                                            
+cp ${INPUT}/input.txt ${RUNDIR}/input.txt
+#cp ${BATHYMETRY}/depth.txt ${RUNDIR}/depth.txt
+cp ${WAVEDATA}/vessel_* ${RUNDIR}/.
+
+cd ${RUNDIR}
+
+mpiexec_mpt -n 1152 ${EXEC}
+
+exit

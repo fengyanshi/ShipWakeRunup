@@ -1,0 +1,7 @@
+3600    mglob
+160    nglob
+1.0    dx
+1.0    dy
+5.0   dep of channel
+20.0   width of channel
+1.1   slope 1/s
